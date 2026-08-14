@@ -1,0 +1,4 @@
+interface:
+  display_name: "PARS Deep Execution"
+  short_description: "Constraint-driven reasoning and exact-byte verification"
+  default_prompt: "Use $apply-pars-deep to solve this task with constraint preservation, adversarial testing, reconstruction, and evidence-bounded claims."

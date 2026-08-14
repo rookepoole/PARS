@@ -1,0 +1,13 @@
+# Normalize ordinary repository text for stable cross-platform diffs.
+* text=auto
+*.md text eol=lf
+*.txt text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
+
+# Preserve the supplied primary sources byte-for-byte.
+/references/PARS_CANDIDATE_v1.25.0-candidate.6.md -text
+/references/PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf binary

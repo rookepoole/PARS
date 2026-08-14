@@ -1,0 +1,51 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build, coverage, and cache output
+build/
+dist/
+coverage/
+.cache/
+*.log
+*.tmp
+*.bak
+
+# Local Codex and research scratch space
+.codex/
+work/
+tmp/
+outputs/
+
+# Local packages; publish release archives separately
+*.zip
