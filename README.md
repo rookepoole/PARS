@@ -358,6 +358,11 @@ If you reference the public whitepaper, use:
   url     = {https://github.com/rookepoole/PARS}
 }
 ```
+## Community
+
+PARS welcomes rigorous technical discussion, reproduction attempts, criticism, experiments, and contributions.
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before participating in the community.
 
 ## License
 
