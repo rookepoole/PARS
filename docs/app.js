@@ -62,7 +62,7 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>link.addEventListener(
 }));
 
 
-// v3 signature interaction: deliberately break the demonstration claim.
+// v3.2 signature interaction: run a complete adversarial PARS pass.
 const trace = document.querySelector("#pars-trace");
 const breakBtn = document.querySelector("#hero-break");
 const traceState = document.querySelector("#trace-state");
@@ -70,47 +70,172 @@ const traceMessage = document.querySelector("#trace-message");
 const traceInv3 = document.querySelector("#trace-inv-3");
 const traceVerdict = document.querySelector("#trace-verdict");
 const traceVerdictCopy = document.querySelector("#trace-verdict-copy");
+const traceStep = document.querySelector("#trace-step");
+const traceProgress = document.querySelector("#trace-progress-fill");
 const traceNodes = [...document.querySelectorAll(".trace-node")];
+
 let traceBusy = false;
+let traceTimers = [];
+
+function clearTraceTimers(){
+  traceTimers.forEach(clearTimeout);
+  traceTimers = [];
+}
+
+function setTraceNode(index, mode="current"){
+  traceNodes.forEach((node, i)=>{
+    node.classList.remove("current","fail","rebuild");
+    if(i < index) node.classList.add("done");
+    else node.classList.remove("done");
+  });
+  if(index >= 0 && traceNodes[index]){
+    traceNodes[index].classList.add(mode);
+  }
+}
+
+function setInv3(status, mode=""){
+  traceInv3.className = "";
+  if(mode) traceInv3.classList.add(mode);
+  traceInv3.innerHTML = `INV-003 <b>${status}</b>`;
+}
 
 function resetTrace(){
+  clearTraceTimers();
+  traceBusy = false;
   trace.classList.remove("is-broken","is-reconstructing");
-  traceNodes.forEach(n=>n.classList.remove("fail","rebuild"));
-  traceState.textContent = "BUILD AUTHORIZED";
-  traceMessage.textContent = "All demonstration invariants pass. Inject a contradiction to watch PARS refuse the candidate.";
-  traceInv3.classList.remove("fail");
-  traceInv3.innerHTML = "INV-003 <b>PASS</b>";
-  traceVerdict.textContent = "SUPPORTED";
-  traceVerdictCopy.textContent = "bounded to demonstrated evidence";
+  traceNodes.forEach(n=>n.classList.remove("current","done","fail","rebuild"));
+  traceState.textContent = "READY FOR ADVERSARIAL RUN";
+  traceMessage.textContent = "Run the complete PARS cycle. A hostile perturbation will break one invariant; Build must stay blocked until Reconstruction and retest repair the candidate.";
+  setInv3("UNTESTED");
+  traceVerdict.textContent = "PENDING";
+  traceVerdictCopy.textContent = "run the adversarial pass";
+  traceStep.textContent = "READY";
+  traceProgress.style.width = "0%";
+  breakBtn.disabled = false;
   breakBtn.textContent = "Break the claim";
 }
 
-breakBtn?.addEventListener("click",()=>{
-  if(traceBusy) return;
-  traceBusy = true;
-  trace.classList.add("is-broken");
-  traceNodes[4].classList.add("fail");
-  traceNodes[6].classList.add("fail");
-  traceState.textContent = "BUILD BLOCKED";
-  traceMessage.textContent = "INV-003 now contradicts the candidate. PARS refuses Build and returns affected state to Reconstruction.";
-  traceInv3.classList.add("fail");
-  traceInv3.innerHTML = "INV-003 <b>FAIL</b>";
-  traceVerdict.textContent = "REJECTED";
-  traceVerdictCopy.textContent = "candidate exceeds current evidence";
-  breakBtn.textContent = "Contradiction injected";
+function scheduleTrace(delay, fn){
+  traceTimers.push(setTimeout(fn, delay));
+}
 
-  setTimeout(()=>{
+function beginTrace(){
+  if(traceBusy) return;
+  resetTrace();
+  traceBusy = true;
+  breakBtn.disabled = true;
+  breakBtn.textContent = "PARS running…";
+
+  // 1 / PARSE
+  scheduleTrace(200, ()=>{
+    setTraceNode(0);
+    traceStep.textContent = "01 / 09 · PARSE";
+    traceProgress.style.width = "10%";
+    traceState.textContent = "CONTRACT FROZEN";
+    traceMessage.textContent = "Parse separates facts, assumptions, unknowns, prohibited paths, acceptance criteria, and the narrowest defensible claim.";
+    traceVerdict.textContent = "PENDING";
+    traceVerdictCopy.textContent = "contract established";
+  });
+
+  // 2 / BRANCH
+  scheduleTrace(2000, ()=>{
+    setTraceNode(1);
+    traceStep.textContent = "02 / 09 · BRANCH";
+    traceProgress.style.width = "21%";
+    traceState.textContent = "BRANCHES OPEN";
+    traceMessage.textContent = "Mechanism-distinct alternatives remain alive alongside NULL / OTHER so the leading explanation cannot win by default.";
+    traceVerdictCopy.textContent = "alternatives preserved";
+  });
+
+  // 3 / TRANSFORM
+  scheduleTrace(3800, ()=>{
+    setTraceNode(2);
+    traceStep.textContent = "03 / 09 · TRANSFORM";
+    traceProgress.style.width = "32%";
+    traceState.textContent = "STRUCTURE EXPOSED";
+    traceMessage.textContent = "Transform changes the representation so assumptions, dependencies, and discriminating predictions can be inspected directly.";
+    traceVerdictCopy.textContent = "candidate made testable";
+  });
+
+  // 4 / PERTURB
+  scheduleTrace(5600, ()=>{
+    setTraceNode(3);
+    traceStep.textContent = "04 / 09 · PERTURB";
+    traceProgress.style.width = "43%";
+    traceState.textContent = "CONTRADICTION INJECTED";
+    traceMessage.textContent = "A hostile perturbation targets INV-003. The candidate is challenged rather than protected by its earlier plausibility.";
+    setInv3("CHALLENGED","challenge");
+    traceVerdict.textContent = "CHALLENGED";
+    traceVerdictCopy.textContent = "claim under adversarial pressure";
+  });
+
+  // 5 / TEST
+  scheduleTrace(7600, ()=>{
+    trace.classList.add("is-broken");
+    setTraceNode(4,"fail");
+    traceStep.textContent = "05 / 09 · TEST";
+    traceProgress.style.width = "55%";
+    traceState.textContent = "FAILURE CONFIRMED";
+    traceMessage.textContent = "The discriminating test establishes that INV-003 fails. This is no longer a confidence issue: the candidate violates the contract.";
+    setInv3("FAIL","fail");
+    traceVerdict.textContent = "REJECTED";
+    traceVerdictCopy.textContent = "candidate exceeds current evidence";
+  });
+
+  // 6 / FINAL GATE attempts Build and blocks it.
+  scheduleTrace(9800, ()=>{
+    setTraceNode(6,"fail");
+    traceStep.textContent = "06 / 09 · FINAL GATE";
+    traceProgress.style.width = "66%";
+    traceState.textContent = "BUILD BLOCKED";
+    traceMessage.textContent = "The Final Invariant Gate refuses Build. A failed active invariant cannot be overridden by branch confidence, aesthetics, or momentum.";
+    traceVerdict.textContent = "WITHHELD";
+    traceVerdictCopy.textContent = "delivery forbidden";
+  });
+
+  // 7 / RECONSTRUCT
+  scheduleTrace(12100, ()=>{
     trace.classList.remove("is-broken");
     trace.classList.add("is-reconstructing");
-    traceNodes[5].classList.add("rebuild");
+    setTraceNode(5,"rebuild");
+    traceStep.textContent = "07 / 09 · RECONSTRUCT";
+    traceProgress.style.width = "77%";
     traceState.textContent = "RECONSTRUCTING";
-    traceMessage.textContent = "Invalid influence is removed. Affected dependencies are rebuilt and downstream checks must run again.";
+    traceMessage.textContent = "Invalid influence is removed, affected dependencies are rebuilt, corrected evidence is inserted, and failure history is preserved.";
+    setInv3("REPAIRING","retest");
     traceVerdict.textContent = "WITHHELD";
-    traceVerdictCopy.textContent = "no stronger claim until retest";
-  }, 1350);
+    traceVerdictCopy.textContent = "no stronger claim before retest";
+  });
 
-  setTimeout(()=>{
-    resetTrace();
+  // 8 / RETEST
+  scheduleTrace(14500, ()=>{
+    setTraceNode(4);
+    traceStep.textContent = "08 / 09 · RETEST";
+    traceProgress.style.width = "89%";
+    traceState.textContent = "DOWNSTREAM REPLAY";
+    traceMessage.textContent = "The repaired candidate is tested again. Every downstream check affected by the changed evidence must replay before Build can reopen.";
+    setInv3("RETESTING","retest");
+    traceVerdict.textContent = "PENDING";
+    traceVerdictCopy.textContent = "verification replay in progress";
+  });
+
+  // 9 / BUILD
+  scheduleTrace(17000, ()=>{
+    trace.classList.remove("is-reconstructing");
+    setTraceNode(6);
+    traceStep.textContent = "09 / 09 · BUILD";
+    traceProgress.style.width = "100%";
+    traceState.textContent = "BUILD AUTHORIZED";
+    traceMessage.textContent = "The repaired candidate now passes the demonstration invariants. Build may proceed, and the final claim remains bounded to what the evidence actually supports.";
+    setInv3("PASS");
+    traceVerdict.textContent = "SUPPORTED";
+    traceVerdictCopy.textContent = "bounded to demonstrated evidence";
+    breakBtn.disabled = false;
+    breakBtn.textContent = "Replay the trace";
     traceBusy = false;
-  }, 4300);
-});
+  });
+}
+
+breakBtn?.addEventListener("click", beginTrace);
+resetTrace();
+

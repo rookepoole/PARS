@@ -19,7 +19,7 @@
   <link rel="canonical" href="https://rookepoole.github.io/PARS/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2311120f'/%3E%3Ctext x='9' y='43' font-family='monospace' font-size='28' font-weight='700' fill='%23d7ff46'%3EP/%3C/text%3E%3C/svg%3E">
   <title>PARS — Poole Adaptive Reasoning Stack</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=3.2">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -53,6 +53,7 @@
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-sigil" aria-hidden="true">P/</div>
 
+      <div class="hero-stage">
       <div class="hero-copy reveal">
         <p class="eyebrow">PARS / VERIFICATION ARCHITECTURE FOR AI REASONING <span class="experimental-tag">EXPERIMENTAL</span></p>
         <h1><span>Reasoning</span> should survive <em>contact</em> with evidence.</h1>
@@ -66,9 +67,10 @@
 
       <div class="pars-trace reveal" id="pars-trace" aria-label="Interactive PARS reasoning trace demonstration">
         <div class="trace-topbar">
-          <span>PARS TRACE / STATIC DEMONSTRATION</span>
-          <span id="trace-contract"><i></i> CONTRACT LOCKED</span>
+          <span>PARS TRACE / ADVERSARIAL PASS</span>
+          <span id="trace-contract"><i></i> <b id="trace-step">READY</b></span>
         </div>
+        <div class="trace-progress" aria-hidden="true"><i id="trace-progress-fill"></i></div>
 
         <div class="trace-main">
           <div class="trace-spine" aria-hidden="true">
@@ -81,21 +83,21 @@
             <div class="trace-node active" data-trace="6"><b>B</b><span>BUILD</span></div>
           </div>
 
-          <div class="trace-display">
+          <div class="trace-display" aria-live="polite">
             <p class="trace-label">CANDIDATE STATE</p>
-            <strong id="trace-state">BUILD AUTHORIZED</strong>
-            <p id="trace-message">All demonstration invariants pass. Inject a contradiction to watch PARS refuse the candidate.</p>
+            <strong id="trace-state">READY FOR ADVERSARIAL RUN</strong>
+            <p id="trace-message">Run the complete PARS cycle. A hostile perturbation will break one invariant; Build must stay blocked until Reconstruction and retest repair the candidate.</p>
             <div class="trace-invariants">
               <span>INV-001 <b>PASS</b></span>
               <span>INV-002 <b>PASS</b></span>
-              <span id="trace-inv-3">INV-003 <b>PASS</b></span>
+              <span id="trace-inv-3">INV-003 <b>UNTESTED</b></span>
             </div>
           </div>
 
           <div class="trace-verdict">
             <span>CLAIM BOUNDARY</span>
-            <b id="trace-verdict">SUPPORTED</b>
-            <small id="trace-verdict-copy">bounded to demonstrated evidence</small>
+            <b id="trace-verdict">PENDING</b>
+            <small id="trace-verdict-copy">run the adversarial pass</small>
           </div>
         </div>
 
@@ -103,6 +105,8 @@
           <span>THE PARS PRINCIPLE</span>
           <strong>THE CLAIM MAY NOT OUTRUN THE EVIDENCE.</strong>
         </div>
+      </div>
+
       </div>
 
       <div class="cycle-strip reveal">
@@ -303,6 +307,6 @@
   <footer class="site-footer">
     <span>PARS / POOLE ADAPTIVE REASONING STACK</span><span>MIT LICENSE</span><span>PUBLIC RESEARCH RELEASE</span>
   </footer>
-  <script src="./app.js"></script>
+  <script src="./app.js?v=3.2"></script>
 </body>
 </html>
