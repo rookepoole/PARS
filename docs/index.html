@@ -1,11 +1,250 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PARS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PARS — Poole Adaptive Reasoning Stack. An evidence-bounded reasoning and verification architecture for difficult AI work.">
+  <meta name="theme-color" content="#11120f">
+  <title>PARS — Poole Adaptive Reasoning Stack</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>PARS</h1>
-  <p>Poole Adaptive Reasoning Stack</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="PARS home">
+      <span class="brand-mark">P/</span><span class="brand-name">PARS</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#engine">Engine</a>
+      <a href="#gate">Invariant gate</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#records">Field records</a>
+      <a href="#run">Run PARS</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/rookepoole/PARS">GitHub ↗</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow">POOLE ADAPTIVE REASONING STACK / EXPERIMENTAL</p>
+        <h1>Reasoning should survive contact with evidence.</h1>
+        <p class="hero-lede">PARS is an evidence-bounded reasoning and verification architecture for difficult work: preserve the contract, explore competing mechanisms, attack weak assumptions, reconstruct after new evidence, and verify the exact final artifact before making a claim.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#engine">Open the engine</a>
+          <a class="button button-ghost" href="https://github.com/rookepoole/PARS/blob/main/references/PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf">Read the whitepaper ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-instrument reveal">
+        <div class="instrument-head">
+          <span>LIVE REASONING INSTRUMENT</span>
+          <span class="status-dot"><i></i> CONTRACT LOCKED</span>
+        </div>
+        <div class="instrument-body">
+          <div class="signal-column">
+            <span class="signal-label">ACTIVE STATE</span>
+            <strong id="hero-state">PARSE</strong>
+            <span id="hero-substate">Freeze facts, assumptions, unknowns, and failure conditions.</span>
+          </div>
+          <div class="signal-column mono-list">
+            <span>INV-001 <b>PASS</b></span>
+            <span>INV-002 <b>PASS</b></span>
+            <span>INV-003 <b class="warn">UNVERIFIED</b></span>
+          </div>
+        </div>
+        <div class="instrument-footer">No unsupported claim crosses the final gate.</div>
+      </div>
+
+      <div class="cycle-strip reveal">
+        <span>PARSE</span><i>→</i><span>BRANCH</span><i>→</i><span>TRANSFORM</span><i>→</i><span>PERTURB</span><i>→</i><span>TEST</span><i>→</i><span>RECONSTRUCT</span><i>→</i><span>BUILD</span>
+      </div>
+    </section>
+
+    <section class="manifesto section-pad">
+      <div class="section-kicker">01 / WHY</div>
+      <div class="manifesto-grid">
+        <h2>Generation is easy.<br>Knowing when to trust it is not.</h2>
+        <div class="manifesto-copy">
+          <p>PARS treats difficult work as a contract-preservation and evidence-classification problem rather than merely an answer-generation problem.</p>
+          <p>It keeps competing mechanisms alive, protects a NULL/OTHER possibility, prioritizes discriminating evidence, and preserves failure history instead of smoothing it away.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="engine section-pad" id="engine">
+      <div class="section-kicker">02 / THE ENGINE</div>
+      <div class="section-title-row">
+        <h2>Seven stages. No one-way street.</h2>
+        <p>Changed evidence can send the process backward. A broken representation returns to Transform. A missing mechanism returns to Branch. A changed contract returns to Parse.</p>
+      </div>
+
+      <div class="engine-console">
+        <div class="engine-rail" role="tablist" aria-label="PARS stages">
+          <button class="stage active" data-stage="0"><span>01</span>Parse</button>
+          <button class="stage" data-stage="1"><span>02</span>Branch</button>
+          <button class="stage" data-stage="2"><span>03</span>Transform</button>
+          <button class="stage" data-stage="3"><span>04</span>Perturb</button>
+          <button class="stage" data-stage="4"><span>05</span>Test</button>
+          <button class="stage" data-stage="5"><span>06</span>Reconstruct</button>
+          <button class="stage" data-stage="6"><span>07</span>Build</button>
+        </div>
+        <div class="engine-display">
+          <div class="engine-meta"><span id="stage-number">STAGE 01</span><span id="stage-code">CONTRACT_FREEZE</span></div>
+          <h3 id="stage-title">Parse the real task.</h3>
+          <p id="stage-copy">Separate facts, assumptions, preferences, unknowns, prohibited paths, acceptance criteria, and the narrowest defensible claim.</p>
+          <div class="engine-readout">
+            <div><small>INPUT</small><span id="stage-input">ambiguous request</span></div>
+            <div><small>OUTPUT</small><span id="stage-output">frozen contract + invariants</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="break-it section-pad" id="gate">
+      <div class="section-kicker">03 / BREAK IT</div>
+      <div class="break-grid">
+        <div>
+          <h2>The final candidate does not get the benefit of the doubt.</h2>
+          <p>Every acceptance-critical requirement is represented as an invariant. Before Build, PARS replays every active invariant against the exact selected candidate.</p>
+          <p>If one fails, Build is blocked. If one cannot be verified, PARS must obtain evidence or return an explicitly inconclusive result.</p>
+        </div>
+        <div class="gate-simulator">
+          <div class="gate-head"><span>FINAL INVARIANT GATE</span><span>3 ACTIVE</span></div>
+          <div class="gate-list">
+            <div class="gate-row pass"><span>INV-001</span><b>Hard requirement preserved</b><em>PASS</em></div>
+            <div class="gate-row pass"><span>INV-002</span><b>Evidence chain complete</b><em>PASS</em></div>
+            <button class="gate-row pass" id="toggle-invariant"><span>INV-003</span><b>Final artifact matches contract</b><em>PASS</em></button>
+          </div>
+          <div class="build-gate pass" id="build-gate"><span>BUILD AUTHORIZED</span><small>Click INV-003 to inject a failure.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence section-pad" id="evidence">
+      <div class="section-kicker">04 / EVIDENCE &gt; CONFIDENCE</div>
+      <div class="section-title-row">
+        <h2>Evidence has an order.</h2>
+        <p>PARS ranks stronger evidence above plausibility. Duplicated evidence counts once. Authority can affect reliability, but does not determine truth.</p>
+      </div>
+      <div class="evidence-ladder">
+        <div class="evidence-row strongest"><span>01</span><b>Proof / counterexample</b><em>strongest</em></div>
+        <div class="evidence-row"><span>02</span><b>Independent measurement</b><em></em></div>
+        <div class="evidence-row"><span>03</span><b>Controlled experiment</b><em></em></div>
+        <div class="evidence-row"><span>04</span><b>Held-out prediction</b><em></em></div>
+        <div class="evidence-row"><span>05</span><b>Reproducible simulation</b><em></em></div>
+        <div class="evidence-row"><span>06</span><b>Historical replay</b><em></em></div>
+        <div class="evidence-row"><span>07</span><b>Expert / source comparison</b><em></em></div>
+        <div class="evidence-row"><span>08</span><b>Visual inspection</b><em></em></div>
+        <div class="evidence-row weakest"><span>09</span><b>Intuition</b><em>weakest</em></div>
+      </div>
+    </section>
+
+    <section class="reconstruct section-pad">
+      <div class="section-kicker">05 / RECONSTRUCTION</div>
+      <div class="reconstruct-card">
+        <div class="reconstruct-copy">
+          <h2>New evidence should change the structure, not just the confidence score.</h2>
+          <p>When material evidence changes, PARS removes invalid influence, inserts corrections, rebuilds affected dependencies, reruns downstream checks, and preserves the failure history.</p>
+        </div>
+        <div class="dependency-map">
+          <div class="node n1">ASSUMPTION A</div>
+          <div class="node n2 failed">EVIDENCE B<br><small>COLLAPSED</small></div>
+          <div class="node n3">CLAIM C</div>
+          <div class="node n4">BUILD D</div>
+          <svg viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M95 70 C220 70,200 90,310 100" />
+            <path class="failed-line" d="M95 195 C210 195,205 140,310 112" />
+            <path d="M365 108 C450 108,450 150,520 150" />
+          </svg>
+          <div class="reconstruct-stamp">RECONSTRUCT<br><small>affected state only</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field-records section-pad" id="records">
+      <div class="section-kicker">06 / FIELD RECORDS</div>
+      <div class="section-title-row">
+        <h2>Failures stay in the record.</h2>
+        <p>Historical cases are development evidence, not a prospective proof of PARS superiority. They show the method, boundaries, repairs, and proof burden.</p>
+      </div>
+      <div class="record-grid">
+        <article class="record-card">
+          <span>FIELD RECORD 001</span>
+          <h3>LHC Collider v2.1</h3>
+          <p>Visual failure → runtime failure → one-byte repair → exact reconstruction and runtime replay.</p>
+          <dl><div><dt>ARTIFACT</dt><dd>ELF64</dd></div><div><dt>BYTES</dt><dd>2,048</dd></div></dl>
+        </article>
+        <article class="record-card">
+          <span>FIELD RECORD 002</span>
+          <h3>WASM Hyperlattice</h3>
+          <p>Cross-format direct serialization with zero imports, perturbation, regeneration, and exact identity checks.</p>
+          <dl><div><dt>ARTIFACT</dt><dd>WASM</dd></div><div><dt>BYTES</dt><dd>9,433</dd></div></dl>
+        </article>
+        <article class="record-card">
+          <span>FIELD RECORD 003</span>
+          <h3>BVIS-001 audit</h3>
+          <p>Technical checks passed while upstream byte-stream provenance remained absent. Strict result: INCONCLUSIVE.</p>
+          <dl><div><dt>RESULT</dt><dd>INCONCLUSIVE</dd></div><div><dt>CLAIM</dt><dd>BOUNDED</dd></div></dl>
+        </article>
+      </div>
+      <a class="text-link" href="https://github.com/rookepoole/PARS/blob/main/references/evaluation-and-evidence.md">Open the full evidence map →</a>
+    </section>
+
+    <section class="adaptation section-pad">
+      <div class="section-kicker">07 / VERIFIED ADAPTATION</div>
+      <div class="adapt-grid">
+        <div>
+          <h2>Learning claims are classified, not implied.</h2>
+          <p>Prompting, context, memory, recursive search, repeated inference, and controller edits do not magically become model training. PARS separates four adaptation classes.</p>
+        </div>
+        <div class="adapt-stack">
+          <div><span>RL0</span><b>Current-task adaptation</b><small>Evidence changes reasoning during this task.</small></div>
+          <div><span>RL1</span><b>Verified strategy memory</b><small>Scoped strategy retained with evidence and failures.</small></div>
+          <div><span>RL2</span><b>Verified controller adaptation</b><small>Child controller promoted only after separated evaluation.</small></div>
+          <div><span>RL3</span><b>Parameter learning</b><small>Actual model parameters change through training.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="run section-pad" id="run">
+      <div class="section-kicker">08 / RUN PARS</div>
+      <div class="run-grid">
+        <div>
+          <h2>Install the skill.<br>Freeze the contract.<br>Attack the answer.</h2>
+          <p>The public repository packages PARS as the installable Codex skill <code>$apply-pars-deep</code>, together with the operative candidate specification, whitepaper, evidence templates, and execution references.</p>
+        </div>
+        <div class="terminal">
+          <div class="terminal-head"><span>WINDOWS / POWERSHELL</span><button data-copy="#install-command">COPY</button></div>
+          <pre id="install-command"><code>git clone https://github.com/rookepoole/PARS.git "$env:USERPROFILE\.codex\skills\apply-pars-deep"</code></pre>
+          <div class="terminal-prompt"><span>invoke</span><strong>$apply-pars-deep</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="boundary section-pad">
+      <div class="boundary-mark">!</div>
+      <div>
+        <div class="section-kicker">CLAIM BOUNDARY</div>
+        <h2>Experimental means experimental.</h2>
+        <p>PARS v1.25.0-candidate.6 is experimental and unpromoted. The public whitepaper defines a prospective comparison against simpler prompting, but that comparison has not yet been reported as completed. Historical cases are development evidence unless prospectively regenerated under a frozen protocol.</p>
+        <a class="text-link" href="https://github.com/rookepoole/PARS/blob/main/references/source-authority.md">Read the source authority boundary →</a>
+      </div>
+    </section>
+
+    <section class="creator section-pad">
+      <p class="eyebrow">CREATED BY</p>
+      <h2>Rooke Poole</h2>
+      <p>Independent AI systems builder and researcher.</p>
+      <div class="creator-links"><a href="https://github.com/rookepoole">GitHub ↗</a><a href="https://x.com/rookepoole">@rookepoole ↗</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>PARS / POOLE ADAPTIVE REASONING STACK</span><span>MIT LICENSE</span><span>PUBLIC RESEARCH RELEASE</span>
+  </footer>
+  <script src="./app.js"></script>
 </body>
 </html>
