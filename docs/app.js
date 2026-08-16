@@ -13,8 +13,7 @@ const buttons = [...document.querySelectorAll(".stage")];
 const els = {
   number:document.querySelector("#stage-number"), code:document.querySelector("#stage-code"),
   title:document.querySelector("#stage-title"), copy:document.querySelector("#stage-copy"),
-  input:document.querySelector("#stage-input"), output:document.querySelector("#stage-output"),
-  heroState:document.querySelector("#hero-state"), heroSub:document.querySelector("#hero-substate")
+  input:document.querySelector("#stage-input"), output:document.querySelector("#stage-output")
 };
 
 function selectEngineStage(i){
@@ -31,30 +30,10 @@ function selectEngineStage(i){
   els.output.textContent=s.output;
 }
 
-function selectHeroStage(i){
-  const s=stages[i];
-  els.heroState.textContent=s.name;
-  els.heroSub.textContent=s.copy;
-}
 
 buttons.forEach((b)=>b.addEventListener("click",()=>selectEngineStage(+b.dataset.stage)));
 selectEngineStage(0);
-selectHeroStage(0);
 
-let heroIndex=0;
-const heroInstrument=document.querySelector(".hero-instrument");
-let heroPaused=false;
-heroInstrument?.addEventListener("mouseenter",()=>heroPaused=true);
-heroInstrument?.addEventListener("mouseleave",()=>heroPaused=false);
-heroInstrument?.addEventListener("focusin",()=>heroPaused=true);
-heroInstrument?.addEventListener("focusout",()=>heroPaused=false);
-
-setInterval(()=>{
-  if(!document.hidden && !heroPaused){
-    heroIndex=(heroIndex+1)%stages.length;
-    selectHeroStage(heroIndex);
-  }
-},5000);
 
 const inv=document.querySelector("#toggle-invariant");
 const gate=document.querySelector("#build-gate");
