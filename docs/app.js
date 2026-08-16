@@ -17,17 +17,44 @@ const els = {
   heroState:document.querySelector("#hero-state"), heroSub:document.querySelector("#hero-substate")
 };
 
-function selectStage(i){
+function selectEngineStage(i){
   const s=stages[i];
-  buttons.forEach((b,j)=>{b.classList.toggle("active",i===j);b.setAttribute("aria-selected",i===j)});
-  els.number.textContent=`STAGE 0${i+1}`; els.code.textContent=s.code; els.title.textContent=s.title;
-  els.copy.textContent=s.copy; els.input.textContent=s.input; els.output.textContent=s.output;
-  els.heroState.textContent=s.name; els.heroSub.textContent=s.copy;
+  buttons.forEach((b,j)=>{
+    b.classList.toggle("active",i===j);
+    b.setAttribute("aria-selected",i===j ? "true" : "false");
+  });
+  els.number.textContent=`STAGE 0${i+1}`;
+  els.code.textContent=s.code;
+  els.title.textContent=s.title;
+  els.copy.textContent=s.copy;
+  els.input.textContent=s.input;
+  els.output.textContent=s.output;
 }
-buttons.forEach((b)=>b.addEventListener("click",()=>selectStage(+b.dataset.stage)));
+
+function selectHeroStage(i){
+  const s=stages[i];
+  els.heroState.textContent=s.name;
+  els.heroSub.textContent=s.copy;
+}
+
+buttons.forEach((b)=>b.addEventListener("click",()=>selectEngineStage(+b.dataset.stage)));
+selectEngineStage(0);
+selectHeroStage(0);
 
 let heroIndex=0;
-setInterval(()=>{ if(!document.hidden){heroIndex=(heroIndex+1)%stages.length;selectStage(heroIndex)} },5000);
+const heroInstrument=document.querySelector(".hero-instrument");
+let heroPaused=false;
+heroInstrument?.addEventListener("mouseenter",()=>heroPaused=true);
+heroInstrument?.addEventListener("mouseleave",()=>heroPaused=false);
+heroInstrument?.addEventListener("focusin",()=>heroPaused=true);
+heroInstrument?.addEventListener("focusout",()=>heroPaused=false);
+
+setInterval(()=>{
+  if(!document.hidden && !heroPaused){
+    heroIndex=(heroIndex+1)%stages.length;
+    selectHeroStage(heroIndex);
+  }
+},5000);
 
 const inv=document.querySelector("#toggle-invariant");
 const gate=document.querySelector("#build-gate");
@@ -49,3 +76,8 @@ document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("clic
 
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")}),{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+
+document.querySelectorAll(".mobile-menu a").forEach(link=>link.addEventListener("click",()=>{
+  link.closest("details")?.removeAttribute("open");
+}));

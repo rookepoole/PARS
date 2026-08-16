@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="PARS — Poole Adaptive Reasoning Stack. An evidence-bounded reasoning and verification architecture for difficult AI work.">
   <meta name="theme-color" content="#11120f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PARS — Reasoning should survive contact with evidence.">
+  <meta property="og:description" content="An evidence-bounded reasoning and verification architecture for difficult AI work.">
+  <meta property="og:url" content="https://rookepoole.github.io/PARS/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PARS — Poole Adaptive Reasoning Stack">
+  <meta name="twitter:description" content="Preserve the contract. Attack weak assumptions. Reconstruct after new evidence. Verify the final artifact.">
+  <link rel="canonical" href="https://rookepoole.github.io/PARS/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2311120f'/%3E%3Ctext x='9' y='43' font-family='monospace' font-size='28' font-weight='700' fill='%23d7ff46'%3EP/%3C/text%3E%3C/svg%3E">
   <title>PARS — Poole Adaptive Reasoning Stack</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -22,6 +31,16 @@
       <a href="#records">Field records</a>
       <a href="#run">Run PARS</a>
     </nav>
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <div>
+        <a href="#engine">Engine</a>
+        <a href="#gate">Invariant gate</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#records">Field records</a>
+        <a href="#run">Run PARS</a>
+      </div>
+    </details>
     <a class="nav-cta" href="https://github.com/rookepoole/PARS">GitHub ↗</a>
   </header>
 
@@ -29,12 +48,13 @@
     <section class="hero" id="top">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-copy reveal">
-        <p class="eyebrow">POOLE ADAPTIVE REASONING STACK / EXPERIMENTAL</p>
+        <p class="eyebrow">PARS / VERIFICATION ARCHITECTURE FOR AI REASONING <span class="experimental-tag">EXPERIMENTAL</span></p>
         <h1>Reasoning should survive contact with evidence.</h1>
-        <p class="hero-lede">PARS is an evidence-bounded reasoning and verification architecture for difficult work: preserve the contract, explore competing mechanisms, attack weak assumptions, reconstruct after new evidence, and verify the exact final artifact before making a claim.</p>
+        <p class="hero-lede">PARS forces difficult AI work through explicit contracts, competing mechanisms, hostile tests, reconstruction, and a final invariant gate—so the claim cannot outrun the evidence.</p>
         <div class="hero-actions">
-          <a class="button button-dark" href="#engine">Open the engine</a>
-          <a class="button button-ghost" href="https://github.com/rookepoole/PARS/blob/main/references/PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf">Read the whitepaper ↗</a>
+          <a class="button button-dark" href="#gate">See it reject a bad answer</a>
+          <a class="button button-ghost" href="#engine">Open the engine</a>
+          <a class="button button-ghost" href="https://github.com/rookepoole/PARS/blob/main/references/PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf">Whitepaper ↗</a>
         </div>
       </div>
 
@@ -60,6 +80,12 @@
 
       <div class="cycle-strip reveal">
         <span>PARSE</span><i>→</i><span>BRANCH</span><i>→</i><span>TRANSFORM</span><i>→</i><span>PERTURB</span><i>→</i><span>TEST</span><i>→</i><span>RECONSTRUCT</span><i>→</i><span>BUILD</span>
+      </div>
+      <div class="proof-strip reveal" aria-label="Public evidence status">
+        <div><small>PUBLIC RECORD</small><strong>7</strong><span>historical / development cases</span></div>
+        <div><small>CLASSIFICATION</small><strong>3</strong><span>PASS · FAIL · INCONCLUSIVE</span></div>
+        <div><small>DISCIPLINE</small><strong>↺</strong><span>failures and repairs preserved</span></div>
+        <div><small>PROSPECTIVE CLAIM</small><strong>—</strong><span>benchmark still pending</span></div>
       </div>
     </section>
 
@@ -171,19 +197,19 @@
         <p>Historical cases are development evidence, not a prospective proof of PARS superiority. They show the method, boundaries, repairs, and proof burden.</p>
       </div>
       <div class="record-grid">
-        <article class="record-card">
+        <article class="record-card" tabindex="0">
           <span>FIELD RECORD 001</span>
           <h3>LHC Collider v2.1</h3>
           <p>Visual failure → runtime failure → one-byte repair → exact reconstruction and runtime replay.</p>
           <dl><div><dt>ARTIFACT</dt><dd>ELF64</dd></div><div><dt>BYTES</dt><dd>2,048</dd></div></dl>
         </article>
-        <article class="record-card">
+        <article class="record-card" tabindex="0">
           <span>FIELD RECORD 002</span>
           <h3>WASM Hyperlattice</h3>
           <p>Cross-format direct serialization with zero imports, perturbation, regeneration, and exact identity checks.</p>
           <dl><div><dt>ARTIFACT</dt><dd>WASM</dd></div><div><dt>BYTES</dt><dd>9,433</dd></div></dl>
         </article>
-        <article class="record-card">
+        <article class="record-card" tabindex="0">
           <span>FIELD RECORD 003</span>
           <h3>BVIS-001 audit</h3>
           <p>Technical checks passed while upstream byte-stream provenance remained absent. Strict result: INCONCLUSIVE.</p>
