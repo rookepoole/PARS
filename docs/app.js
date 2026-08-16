@@ -81,3 +81,57 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 document.querySelectorAll(".mobile-menu a").forEach(link=>link.addEventListener("click",()=>{
   link.closest("details")?.removeAttribute("open");
 }));
+
+
+// v3 signature interaction: deliberately break the demonstration claim.
+const trace = document.querySelector("#pars-trace");
+const breakBtn = document.querySelector("#hero-break");
+const traceState = document.querySelector("#trace-state");
+const traceMessage = document.querySelector("#trace-message");
+const traceInv3 = document.querySelector("#trace-inv-3");
+const traceVerdict = document.querySelector("#trace-verdict");
+const traceVerdictCopy = document.querySelector("#trace-verdict-copy");
+const traceNodes = [...document.querySelectorAll(".trace-node")];
+let traceBusy = false;
+
+function resetTrace(){
+  trace.classList.remove("is-broken","is-reconstructing");
+  traceNodes.forEach(n=>n.classList.remove("fail","rebuild"));
+  traceState.textContent = "BUILD AUTHORIZED";
+  traceMessage.textContent = "All demonstration invariants pass. Inject a contradiction to watch PARS refuse the candidate.";
+  traceInv3.classList.remove("fail");
+  traceInv3.innerHTML = "INV-003 <b>PASS</b>";
+  traceVerdict.textContent = "SUPPORTED";
+  traceVerdictCopy.textContent = "bounded to demonstrated evidence";
+  breakBtn.textContent = "Break the claim";
+}
+
+breakBtn?.addEventListener("click",()=>{
+  if(traceBusy) return;
+  traceBusy = true;
+  trace.classList.add("is-broken");
+  traceNodes[4].classList.add("fail");
+  traceNodes[6].classList.add("fail");
+  traceState.textContent = "BUILD BLOCKED";
+  traceMessage.textContent = "INV-003 now contradicts the candidate. PARS refuses Build and returns affected state to Reconstruction.";
+  traceInv3.classList.add("fail");
+  traceInv3.innerHTML = "INV-003 <b>FAIL</b>";
+  traceVerdict.textContent = "REJECTED";
+  traceVerdictCopy.textContent = "candidate exceeds current evidence";
+  breakBtn.textContent = "Contradiction injected";
+
+  setTimeout(()=>{
+    trace.classList.remove("is-broken");
+    trace.classList.add("is-reconstructing");
+    traceNodes[5].classList.add("rebuild");
+    traceState.textContent = "RECONSTRUCTING";
+    traceMessage.textContent = "Invalid influence is removed. Affected dependencies are rebuilt and downstream checks must run again.";
+    traceVerdict.textContent = "WITHHELD";
+    traceVerdictCopy.textContent = "no stronger claim until retest";
+  }, 1350);
+
+  setTimeout(()=>{
+    resetTrace();
+    traceBusy = false;
+  }, 4300);
+});
