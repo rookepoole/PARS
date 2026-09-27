@@ -41,8 +41,9 @@ coverage/
 *.tmp
 *.bak
 
-# Local Codex and research scratch space
+# Local Codex, Claude Code and research scratch space
 .codex/
+.claude/
 work/
 tmp/
 outputs/

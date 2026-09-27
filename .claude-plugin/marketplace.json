@@ -1,0 +1,14 @@
+{
+  "name": "pars",
+  "owner": {
+    "name": "Rooke Alan Poole"
+  },
+  "description": "PARS is an evidence-bounded reasoning and verification architecture for research, audits, hard-constrained artifact work, and exact-binary provenance.",
+  "plugins": [
+    {
+      "name": "pars",
+      "source": "./",
+      "description": "PARS is an evidence-bounded reasoning and verification architecture for research, audits, hard-constrained artifact work, and exact-binary provenance."
+    }
+  ]
+}

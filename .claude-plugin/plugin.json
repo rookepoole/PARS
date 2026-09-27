@@ -1,0 +1,22 @@
+{
+  "name": "pars",
+  "version": "1.25.0-candidate.6",
+  "description": "PARS is an evidence-bounded reasoning and verification architecture for research, audits, hard-constrained artifact work, and exact-binary provenance.",
+  "author": {
+    "name": "Rooke Alan Poole"
+  },
+  "homepage": "https://rookepoole.github.io/PARS/",
+  "repository": "https://github.com/rookepoole/PARS",
+  "license": "MIT",
+  "keywords": [
+    "reasoning",
+    "verification",
+    "invariants",
+    "evidence",
+    "research",
+    "provenance"
+  ],
+  "skills": [
+    "./"
+  ]
+}

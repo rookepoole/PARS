@@ -276,12 +276,26 @@
       <div class="run-grid">
         <div>
           <h2>Install the skill.<br>Freeze the contract.<br>Attack the answer.</h2>
-          <p>The public repository packages PARS as the installable Codex skill <code>$apply-pars-deep</code>, together with the operative candidate specification, whitepaper, evidence templates, and execution references.</p>
+          <p>The public repository packages PARS as the installable agent skill <code>apply-pars-deep</code> for OpenAI Codex and Claude Code, together with the operative candidate specification, whitepaper, evidence templates, and execution references.</p>
         </div>
-        <div class="terminal">
-          <div class="terminal-head"><span>WINDOWS / POWERSHELL</span><button data-copy="#install-command">COPY</button></div>
-          <pre id="install-command"><code>git clone https://github.com/rookepoole/PARS.git "$env:USERPROFILE\.codex\skills\apply-pars-deep"</code></pre>
-          <div class="terminal-prompt"><span>invoke</span><strong>$apply-pars-deep</strong></div>
+        <div class="terminal-stack">
+          <div class="terminal">
+            <div class="terminal-head"><span>CODEX / WINDOWS POWERSHELL</span><button data-copy="#install-command">COPY</button></div>
+            <pre id="install-command"><code>git clone https://github.com/rookepoole/PARS.git "$env:USERPROFILE\.codex\skills\apply-pars-deep"</code></pre>
+            <div class="terminal-prompt"><span>invoke</span><strong>$apply-pars-deep</strong></div>
+          </div>
+          <div class="terminal">
+            <div class="terminal-head"><span>CLAUDE CODE / PLUGIN</span><button data-copy="#install-command-claude-plugin">COPY</button></div>
+            <pre id="install-command-claude-plugin"><code>/plugin marketplace add rookepoole/PARS
+/plugin install pars@pars</code></pre>
+            <div class="terminal-prompt"><span>invoke</span><strong>/pars:apply-pars-deep</strong></div>
+          </div>
+          <div class="terminal">
+            <div class="terminal-head"><span>CLAUDE CODE / MACOS OR LINUX</span><button data-copy="#install-command-claude">COPY</button></div>
+            <pre id="install-command-claude"><code>git clone https://github.com/rookepoole/PARS.git "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills/apply-pars-deep"</code></pre>
+            <p class="terminal-note">Alternative: clone into the skills directory. Default directory: <code>~/.claude/skills/apply-pars-deep</code>.</p>
+            <div class="terminal-prompt"><span>invoke</span><strong>/apply-pars-deep</strong></div>
+          </div>
         </div>
       </div>
     </section>

@@ -198,6 +198,26 @@ git clone https://github.com/rookepoole/PARS.git "${CODEX_HOME:-$HOME/.codex}/sk
 
 ### Claude Code
 
+Install through the plugin marketplace in Claude Code:
+
+```text
+/plugin marketplace add rookepoole/PARS
+/plugin install pars@pars
+```
+
+Or run the equivalent commands from a shell:
+
+```bash
+claude plugin marketplace add rookepoole/PARS
+claude plugin install pars@pars
+```
+
+The install is user-wide by default. Add `--scope project` (shared with a repository through `.claude/settings.json`) or `--scope local` (this checkout only) to `claude plugin install` to scope it to one repository.
+
+Invoke a plugin install with `/pars:apply-pars-deep`, or start from `/pars:apply <task>`, which fills in the same default prompt Codex offers through `agents/openai.yaml`.
+
+Alternatively, clone the repository into the skills directory and invoke it with `/apply-pars-deep`.
+
 Windows PowerShell:
 
 ```powershell
@@ -213,6 +233,15 @@ git clone https://github.com/rookepoole/PARS.git "${CLAUDE_CONFIG_DIR:-$HOME/.cl
 Use `.claude/skills/` inside a project directory instead to scope the skill to one repository.
 
 ### Updating
+
+For a plugin install, refresh the marketplace, then update the plugin, then restart Claude Code to load the new version:
+
+```text
+/plugin marketplace update pars
+/plugin update pars@pars
+```
+
+For a cloned install:
 
 Pull with `--ff-only` from whichever directory the skill was installed into.
 
@@ -244,7 +273,9 @@ The repository folder may be named `apply-pars-deep`; the skill identity comes f
 
 ## Using the skill
 
-Invoke it explicitly. Codex uses `$apply-pars-deep`; Claude Code uses `/apply-pars-deep`, and also loads the skill on its own when a request matches the `description` frontmatter. The prompts below are written in the Codex form; substitute the Claude Code form when running there.
+Invoke it explicitly. Codex uses `$apply-pars-deep`. Claude Code also loads the skill on its own when a request matches the `description` frontmatter.
+
+Codex:
 
 ```text
 Use $apply-pars-deep to audit this decision, preserve every hard requirement,
@@ -265,6 +296,30 @@ artifact identity, reconstruction identity, runtime success, and BP2 provenance.
 Use $apply-pars-deep to design a preregistered comparison between ordinary
 prompting and PARS-FEBP under a frozen model, task bank, and resource envelope.
 ```
+
+Claude Code, cloned install:
+
+```text
+/apply-pars-deep to audit this decision, preserve every hard requirement,
+and tell me the strongest conclusion supported by the evidence.
+```
+
+```text
+/apply-pars-deep to identify and perform the next best research move on
+this project. Preserve completed work and do not erase failed hypotheses.
+```
+
+```text
+/apply-pars-deep to classify this exact-binary evidence package. Distinguish
+artifact identity, reconstruction identity, runtime success, and BP2 provenance.
+```
+
+```text
+/apply-pars-deep to design a preregistered comparison between ordinary
+prompting and PARS-FEBP under a frozen model, task bank, and resource envelope.
+```
+
+For a plugin install, invoke `/pars:apply-pars-deep` with the same prompt text.
 
 PARS normally executes the user's task without narrating its internal process. Ask for an audit trail, invariant ledger, evidence receipt, or benchmark preregistration when you need a durable record.
 
@@ -303,6 +358,8 @@ PARS/
 |-- agents/
 |   |-- anthropic.yaml
 |   `-- openai.yaml
+|-- commands/
+|   `-- apply.md
 |-- assets/
 |   |-- pars-ecs-case-study.md
 |   |-- pars-febp-benchmark-preregistration.md
@@ -325,6 +382,9 @@ PARS/
 |-- llms.txt
 |-- LICENSE
 |-- .gitattributes
+|-- .claude-plugin/
+|   |-- plugin.json
+|   `-- marketplace.json
 `-- .gitignore
 ```
 
@@ -347,19 +407,31 @@ The whitepaper does **not** report that prospective comparison as completed. His
 
 ## Validation
 
-Validate the skill structure with Codex's `skill-creator` validator. This validator is Codex-specific; Claude Code loads `SKILL.md` without a separate validation step.
+### Codex
 
-### Windows PowerShell
+Validate the skill structure with Codex's `skill-creator` validator.
+
+#### Windows PowerShell
 
 ```powershell
 python "$env:USERPROFILE\.codex\skills\.system\skill-creator\scripts\quick_validate.py" .
 ```
 
-### macOS or Linux
+#### macOS or Linux
 
 ```bash
 python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" .
 ```
+
+### Claude Code
+
+From the repository root, validate `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json`:
+
+```bash
+claude plugin validate --strict .
+```
+
+This checks the plugin manifests only. `SKILL.md` frontmatter is the same file on both hosts, so the Codex validator above covers it for Claude Code as well.
 
 Before publishing a change:
 
@@ -389,7 +461,7 @@ Issues and pull requests are welcome. Changes should preserve the architecture's
 - Add objective or held-out tests for strategy or controller promotion claims.
 - Do not infer BP2 from BP1, BV2 from visual plausibility, or RL3 from prompting or memory.
 - Keep `SKILL.md` procedural and concise; place detailed domain material in `references/`.
-- Update `agents/openai.yaml` and `agents/anthropic.yaml` when the skill's user-facing identity changes.
+- Update `agents/openai.yaml`, `agents/anthropic.yaml`, and `.claude-plugin/plugin.json` when the skill's user-facing identity changes. Claude Code reads `.claude-plugin/plugin.json` as the plugin manifest. Update its `version` when the PARS candidate version changes.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for proposal guidance and the before-publishing checklist.
 
