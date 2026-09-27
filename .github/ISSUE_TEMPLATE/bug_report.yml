@@ -1,0 +1,64 @@
+name: Skill misbehavior
+description: Report a reproducible mismatch between the skill's instructions and observed behavior.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the observed behavior and the requirement it violates. For a security vulnerability, use SECURITY.md instead of a public report. Remove credentials and personal data from prompts and logs.
+  - type: input
+    id: host
+    attributes:
+      label: Host and version
+      description: Identify the host, its version, and the operating system.
+    validations:
+      required: true
+  - type: input
+    id: skill-version
+    attributes:
+      label: PARS version or commit
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model and configuration
+      description: Include the model identifier and relevant settings.
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt and reproduction steps
+      description: Include the exact prompt if available, or explicitly state what is missing.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Identify the instruction or acceptance requirement that should hold.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the relevant output and evidence of the mismatch.
+    validations:
+      required: true
+  - type: dropdown
+    id: skill-modified
+    attributes:
+      label: Was SKILL.md modified?
+      options:
+        - "No"
+        - "Yes"
+        - "Unknown"
+    validations:
+      required: true
+  - type: textarea
+    id: modifications
+    attributes:
+      label: Local modifications
+      description: If modified, describe the changes or include the relevant diff.

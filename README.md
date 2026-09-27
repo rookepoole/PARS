@@ -293,6 +293,12 @@ Copy a template into the experiment output; keep the original unchanged. Record 
 
 ```text
 PARS/
+|-- .github/
+|   |-- ISSUE_TEMPLATE/
+|   |   |-- bug_report.yml
+|   |   |-- reproduction_report.yml
+|   |   `-- config.yml
+|   `-- pull_request_template.md
 |-- SKILL.md
 |-- agents/
 |   |-- anthropic.yaml
@@ -301,6 +307,7 @@ PARS/
 |   |-- pars-ecs-case-study.md
 |   |-- pars-febp-benchmark-preregistration.md
 |   `-- pars-febp-evidence-receipt.md
+|-- docs/
 |-- references/
 |   |-- architecture-and-execution.md
 |   |-- evaluation-and-evidence.md
@@ -312,6 +319,10 @@ PARS/
 |   |-- PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf
 |   `-- PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.txt
 |-- README.md
+|-- CODE_OF_CONDUCT.md
+|-- CONTRIBUTING.md
+|-- SECURITY.md
+|-- llms.txt
 |-- LICENSE
 |-- .gitattributes
 `-- .gitignore
@@ -380,6 +391,8 @@ Issues and pull requests are welcome. Changes should preserve the architecture's
 - Keep `SKILL.md` procedural and concise; place detailed domain material in `references/`.
 - Update `agents/openai.yaml` and `agents/anthropic.yaml` when the skill's user-facing identity changes.
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for proposal guidance and the before-publishing checklist.
+
 ## Citation
 
 If you reference the public whitepaper, use:
@@ -398,6 +411,8 @@ If you reference the public whitepaper, use:
 PARS welcomes rigorous technical discussion, reproduction attempts, criticism, experiments, and contributions.
 
 Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before participating in the community.
+
+See [SECURITY.md](SECURITY.md) for vulnerability reporting and safe execution guidance.
 
 ## License
 

@@ -1,0 +1,61 @@
+name: Reproduction or evidence report
+description: Record a reproduction attempt, its evidence, and its claim boundary.
+title: "[Evidence] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use references/evaluation-and-evidence.md and the evidence templates in assets/. Preserve failures and missing evidence. Historical cases remain Type C historical/development evidence unless prospectively regenerated. Remove credentials and personal data before submitting.
+  - type: textarea
+    id: target
+    attributes:
+      label: Target and acceptance requirements
+      description: Identify the source case or task, experiment ID, frozen contract, and hard invariants.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Model, tools, and environment
+      description: Include the PARS commit or version, model configuration, host, task identity, and resource envelope.
+    validations:
+      required: true
+  - type: textarea
+    id: protocol
+    attributes:
+      label: Protocol and prompt identity
+      description: State whether this is development, historical, or prospective evidence. Include the exact prompt or an explicit missing-prompt statement. For prospective comparisons, identify conditions A-D, development and held-out cohorts, and the preregistered protocol as applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and verification
+      description: Link the evidence package. Include artifact hashes, verifier identity, structural validity, runtime behavior, exact reconstruction, hard-invariant compliance, provenance checks, and post-Build checks where applicable. State which properties remain unestablished.
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Final classification
+      description: PASS requires every applicable acceptance requirement to be established; FAIL requires a demonstrated violation; INCONCLUSIVE means a required property cannot be established.
+      options:
+        - "PASS"
+        - "FAIL"
+        - "INCONCLUSIVE"
+    validations:
+      required: true
+  - type: textarea
+    id: claim-boundary
+    attributes:
+      label: Classification and claim boundary
+      description: Explain the supported claim and its limits. Record BP/BV classifications where applicable. Use the paper-defined CCEBS endpoint only when every applicable condition passes; successful execution alone does not establish provenance.
+    validations:
+      required: true
+  - type: textarea
+    id: failures
+    attributes:
+      label: Failed candidates, repairs, and counterevidence
+      description: Preserve the failure history and evidence-triggered repairs. Where applicable, use the paper-defined F1-F10 taxonomy in references/evaluation-and-evidence.md and state any deviations from the frozen protocol.
+    validations:
+      required: true

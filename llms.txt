@@ -1,0 +1,29 @@
+# PARS
+
+> PARS is an evidence-bounded reasoning and verification architecture for research, audits, hard-constrained artifact work, and exact-binary provenance. The repository packages the apply-pars-deep agent skill for OpenAI Codex and Claude Code.
+
+Install: follow the [host-specific installation instructions](https://github.com/rookepoole/PARS/blob/main/README.md#installation).
+
+## Docs
+
+- [Project overview and installation](https://github.com/rookepoole/PARS/blob/main/README.md): Architecture, supported hosts, invocation, validation, and safety.
+- [Skill procedure](https://github.com/rookepoole/PARS/blob/main/SKILL.md): The canonical reasoning cycle, invariant replay, and evidence-bounded reporting.
+- [Contribution rules](https://github.com/rookepoole/PARS/blob/main/CONTRIBUTING.md): Proposing changes and preserving claim boundaries and source identity.
+- [Security reporting and containment](https://github.com/rookepoole/PARS/blob/main/SECURITY.md): Private vulnerability reporting and safe execution guidance.
+
+## Reference
+
+- [Source authority and claim boundaries](https://github.com/rookepoole/PARS/blob/main/references/source-authority.md): Source roles, experimental status, and unsupported claims.
+- [Architecture and execution](https://github.com/rookepoole/PARS/blob/main/references/architecture-and-execution.md): Control, recursive search, hard invariants, Reconstruction, and adaptation.
+- [Evaluation and evidence](https://github.com/rookepoole/PARS/blob/main/references/evaluation-and-evidence.md): Prospective protocols, classification, failure taxonomy, and historical evidence limits.
+- [Exact-binary protocol](https://github.com/rookepoole/PARS/blob/main/references/exact-binary-protocol.md): Artifact identity, reconstruction, provenance, and containment.
+- [Rights and reference use](https://github.com/rookepoole/PARS/blob/main/references/rights-and-reference-use.md): Evidence handling for external works and version-specific rights.
+- [Prompt protocols](https://github.com/rookepoole/PARS/blob/main/references/prompt-protocols.md): PARS-FEBP prompts, repair tasks, and audit contracts.
+- [Candidate specification](https://github.com/rookepoole/PARS/blob/main/references/PARS_CANDIDATE_v1.25.0-candidate.6.md): The experimental candidate's operative procedure and repair requirements.
+
+## Optional
+
+- [Public whitepaper](https://github.com/rookepoole/PARS/blob/main/references/PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf): The disclosed architecture, exact-binary methods, and historical cases.
+- [Evidence receipt template](https://github.com/rookepoole/PARS/blob/main/assets/pars-febp-evidence-receipt.md): Recording artifact identity, checks, failures, and classification.
+- [Case study template](https://github.com/rookepoole/PARS/blob/main/assets/pars-ecs-case-study.md): Structuring a case study with evidence and claim limits.
+- [Benchmark preregistration template](https://github.com/rookepoole/PARS/blob/main/assets/pars-febp-benchmark-preregistration.md): Freezing a prospective comparison before outcomes are known.
