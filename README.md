@@ -334,6 +334,11 @@ PARS normally executes the user's task without narrating its internal process. A
 | Minimal, strict, maximum-assurance, BV2, repair, or audit prompts | [prompt-protocols.md](references/prompt-protocols.md) |
 | Version status, attribution, or validation claims | [source-authority.md](references/source-authority.md) |
 
+## Tools
+
+The optional [PARS invariant ledger](tools/pars-ledger/README.md) records hard invariants and replays their verifiers before and after Build.
+It uses Python 3.9 or later and the standard library; the skill does not require it.
+
 ## Reusable templates
 
 The `assets/` directory contains fillable Markdown templates:
@@ -375,6 +380,12 @@ PARS/
 |   |-- PARS_CANDIDATE_v1.25.0-candidate.6.md
 |   |-- PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.pdf
 |   `-- PARS_WHITEPAPER_PUBLIC_RELEASE_v1.0.txt
+|-- tools/
+|   `-- pars-ledger/
+|       |-- pars_ledger.py
+|       |-- README.md
+|       `-- tests/
+|           `-- test_pars_ledger.py
 |-- README.md
 |-- CODE_OF_CONDUCT.md
 |-- CONTRIBUTING.md
